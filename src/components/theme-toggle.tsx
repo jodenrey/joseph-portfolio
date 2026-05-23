@@ -13,6 +13,8 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
+  // Mount gate for next-themes — required to avoid SSR/client theme mismatch.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   React.useEffect(() => setMounted(true), []);
 
   const isDark = mounted ? resolvedTheme === "dark" : false;

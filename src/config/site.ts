@@ -137,10 +137,28 @@ export const siteConfig = {
   ] as Project[],
   experience: [
     {
+      role: "Freelance Software Engineer",
+      company: "Self-employed",
+      period: "Jan 2024 — Present",
+      bullets: [
+        "Architected and delivered full-stack web applications and internal platforms using Next.js, TypeScript, Node.js, Python, PHP, C#, .NET, SQL Server, and PostgreSQL.",
+        "Designed scalable backend systems, REST APIs, and automation pipelines supporting AI-powered workflows and third-party integrations.",
+        "Led end-to-end product development from system architecture and database design to deployment, monitoring, and production support.",
+        "Built AI-driven applications integrating Claude, image generation APIs, payment systems, and social media publishing platforms.",
+        "Engineered event-driven automation systems with scheduled jobs, asynchronous processing, retries, logging, and fault-tolerant workflows.",
+        "Developed and optimized relational database schemas, queries, and data pipelines using PostgreSQL, Prisma, and SQL technologies.",
+        "Implemented secure authentication, role-based access control, API validation, and scalable application patterns for production environments.",
+        "Managed cloud deployments, environment configuration, CI/CD workflows, and application maintenance across frontend and backend services.",
+        "Collaborated directly with clients and stakeholders to translate business requirements into scalable technical solutions and production-ready features.",
+        "Leveraged AI-assisted development tools including Cursor and Claude Code to accelerate delivery, improve architecture planning, and streamline development workflows.",
+        "Built and maintained systems involving AI automation, content generation pipelines, analytics dashboards, and API orchestration across multiple services.",
+      ],
+    },
+    {
       role: "Software Developer",
       company: "Watsons Philippines",
       companyUrl: "https://www.watsons.com.ph/",
-      period: "Aug 2025 — Present",
+      period: "Aug 2025 — Mar 2026",
       location: "Philippines",
       bullets: [
         "Developed and maintained the HRO Dashboard supporting 13,000+ employee records using Next.js, TypeScript, Tailwind CSS, C# .NET, and SQL Server—delivering real-time HR analytics and reporting.",
@@ -158,16 +176,6 @@ export const siteConfig = {
         "Built a full-stack web scraping platform that automated extraction of 10,000+ records, eliminating manual data collection and integrating with REST APIs.",
         "Developed Python automation scripts using Requests, BeautifulSoup, and Pandas.",
         "Built a real-time dataset visualization dashboard using Next.js and TypeScript, and deployed a responsive SEO-optimized client website.",
-      ],
-    },
-    {
-      role: "Freelance Web Developer",
-      company: "Self-employed",
-      period: "Jan 2024 — Feb 2025",
-      bullets: [
-        "Delivered 5+ full-stack web projects including client websites, web apps, and API integrations using React, Next.js, Node.js, and PHP/WordPress.",
-        "Built custom dashboards and landing pages with performance optimizations to improve load times and engagement.",
-        "Integrated third-party APIs and built RESTful backends to enable business automation; ensured mobile-first UI, accessibility, and cross-browser compatibility.",
       ],
     },
   ] as ExperienceItem[],
