@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type SectionHeaderProps = {
@@ -10,7 +7,6 @@ type SectionHeaderProps = {
   align?: "left" | "center";
   className?: string;
 };
-
 export function SectionHeader({
   eyebrow,
   title,
@@ -19,23 +15,16 @@ export function SectionHeader({
   className,
 }: SectionHeaderProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+    <div
       className={cn(
-        "flex flex-col",
-        align === "center" && "items-center text-center",
+        "section-header",
+        align === "center" && "text-center",
         className,
       )}
     >
-      <span className="eyebrow">
-        <span className="h-px w-6 bg-brand-500/60" aria-hidden />
-        {eyebrow}
-      </span>
-      <h2 className="heading mt-4 text-balance">{title}</h2>
-      {description ? <p className="subheading text-balance">{description}</p> : null}
-    </motion.div>
+      <p className="section-kicker">{eyebrow}</p>
+      <h2 className="section-title">{title}</h2>
+      {description && <p className="section-description">{description}</p>}
+    </div>
   );
 }

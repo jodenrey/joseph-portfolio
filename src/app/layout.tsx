@@ -1,20 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Sora } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { siteConfig } from "@/config/site";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const sora = Sora({
-  subsets: ["latin"],
-  variable: "--font-sora",
   display: "swap",
 });
 
@@ -24,8 +19,11 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://joseph.dev"),
+  metadataBase: siteUrl,
+  alternates: siteUrl ? { canonical: siteUrl.href } : undefined,
   title: {
     default: `${siteConfig.fullName} — ${siteConfig.role}`,
     template: `%s — ${siteConfig.fullName}`,
@@ -43,6 +41,7 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.fullName }],
   creator: siteConfig.fullName,
   openGraph: {
+    url: siteUrl?.href,
     type: "website",
     title: `${siteConfig.fullName} — ${siteConfig.role}`,
     description: siteConfig.tagline,
@@ -61,8 +60,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#f5f3ee" },
+    { media: "(prefers-color-scheme: dark)", color: "#191918" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -77,12 +76,12 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${sora.variable} ${jetbrains.variable}`}
+      className={`${inter.variable} ${jetbrains.variable}`}
     >
       <body className="min-h-screen font-sans">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >

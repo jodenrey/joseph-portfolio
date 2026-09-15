@@ -35,13 +35,17 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
         display: [
-          "var(--font-sora)",
           "var(--font-inter)",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
         ],
-        mono: ["var(--font-jetbrains)", "ui-monospace", "SFMono-Regular", "monospace"],
+        mono: [
+          "var(--font-jetbrains)",
+          "ui-monospace",
+          "SFMono-Regular",
+          "monospace",
+        ],
       },
       letterSpacing: {
         tightest: "-0.04em",

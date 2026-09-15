@@ -42,8 +42,19 @@ type ButtonAsLink = CommonProps &
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 export function Button(props: ButtonProps) {
-  const { variant = "primary", size = "md", className, children, ...rest } = props;
-  const classes = cn(baseClasses, variantClasses[variant], sizeClasses[size], className);
+  const {
+    variant = "primary",
+    size = "md",
+    className,
+    children,
+    ...rest
+  } = props;
+  const classes = cn(
+    baseClasses,
+    variantClasses[variant],
+    sizeClasses[size],
+    className,
+  );
 
   if ("href" in rest && rest.href) {
     const { href, ...anchorRest } = rest as ButtonAsLink;
@@ -52,7 +63,9 @@ export function Button(props: ButtonProps) {
       <a
         href={href}
         className={classes}
-        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...(isExternal
+          ? { target: "_blank", rel: "noopener noreferrer" }
+          : {})}
         {...anchorRest}
       >
         {children}
@@ -61,7 +74,10 @@ export function Button(props: ButtonProps) {
   }
 
   return (
-    <button className={classes} {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button
+      className={classes}
+      {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
       {children}
     </button>
   );

@@ -1,20 +1,17 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-type ContactBody = {
-  name: string;
-  email: string;
-  message: string;
-  honey?: string; // honeypot
-};
-
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 // Lightweight in-memory rate limit (per server instance)
 const rateLimit = new Map<string, { count: number; resetAt: number }>();
-function allowRequest(ip: string, limit = 5, windowMs = 10 * 60 * 1000): boolean {
+function allowRequest(
+  ip: string,
+  limit = 5,
+  windowMs = 10 * 60 * 1000,
+): boolean {
   const now = Date.now();
   const entry = rateLimit.get(ip);
   if (!entry || now > entry.resetAt) {
@@ -39,17 +36,39 @@ export async function POST(req: Request) {
     );
   }
 
-  let body: ContactBody;
+  let body: unknown;
   try {
-    body = (await req.json()) as ContactBody;
+    body = await req.json();
   } catch {
-    return NextResponse.json({ ok: false, error: "Invalid JSON." }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "Please check the form and try again." },
+      { status: 400 },
+    );
   }
 
-  const name = String(body.name ?? "").trim();
-  const email = String(body.email ?? "").trim();
-  const message = String(body.message ?? "").trim();
-  const honey = String(body.honey ?? "").trim();
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json(
+      { ok: false, error: "Please check the form and try again." },
+      { status: 400 },
+    );
+  }
+  const fields = body as Record<string, unknown>;
+  if (
+    typeof fields.name !== "string" ||
+    typeof fields.email !== "string" ||
+    typeof fields.message !== "string" ||
+    (fields.honey !== undefined && typeof fields.honey !== "string")
+  ) {
+    return NextResponse.json(
+      { ok: false, error: "Please fill in your name, email, and message." },
+      { status: 400 },
+    );
+  }
+
+  const name = fields.name.trim();
+  const email = fields.email.trim();
+  const message = fields.message.trim();
+  const honey = typeof fields.honey === "string" ? fields.honey.trim() : "";
 
   // Bot trap: humans never fill this
   if (honey.length > 0) {
@@ -57,10 +76,19 @@ export async function POST(req: Request) {
   }
 
   if (name.length < 2 || name.length > 80) {
-    return NextResponse.json({ ok: false, error: "Name looks invalid." }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "Please enter a name between 2 and 80 characters." },
+      { status: 400 },
+    );
   }
   if (!isValidEmail(email) || email.length > 120) {
-    return NextResponse.json({ ok: false, error: "Email looks invalid." }, { status: 400 });
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "Please enter a valid email address, up to 120 characters.",
+      },
+      { status: 400 },
+    );
   }
   if (message.length < 10 || message.length > 4000) {
     return NextResponse.json(
@@ -75,14 +103,15 @@ export async function POST(req: Request) {
   const pass = process.env.SMTP_PASS;
   const to = process.env.CONTACT_TO || process.env.SMTP_USER;
   const from =
-    process.env.CONTACT_FROM || (user ? `Portfolio Contact <${user}>` : undefined);
+    process.env.CONTACT_FROM ||
+    (user ? `Portfolio Contact <${user}>` : undefined);
 
   if (!host || !user || !pass || !to || !from) {
     return NextResponse.json(
       {
         ok: false,
         error:
-          "Email is not configured on this deployment (missing SMTP env vars).",
+          "The contact form is temporarily unavailable.",
       },
       { status: 500 },
     );
@@ -110,9 +139,8 @@ export async function POST(req: Request) {
   } catch (err) {
     console.error(err);
     return NextResponse.json(
-      { ok: false, error: "Failed to send message." },
+      { ok: false, error: "Your message couldn’t be sent. Please try again." },
       { status: 500 },
     );
   }
 }
-

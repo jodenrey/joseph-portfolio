@@ -1,100 +1,184 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowUpRight, Github } from "lucide-react";
-import { siteConfig } from "@/config/site";
+import { useState } from "react";
+import { ArrowDown, ArrowUpRight, Github, Plus } from "lucide-react";
+import { siteConfig, type Project } from "@/config/site";
 import { SectionHeader } from "@/components/ui/section-header";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { ProjectArt } from "@/components/projects/project-art";
+
+const filters = [
+  { value: "all", label: "All work" },
+  { value: "product", label: "Products" },
+  { value: "enterprise", label: "Enterprise" },
+  { value: "tools", label: "Tools" },
+] as const;
+const featured = ["atlas-nhd", "vassist-ai", "atlas-portal", "design-genius"];
+const categoryNames = {
+  product: "PRODUCT DEVELOPMENT",
+  enterprise: "ENTERPRISE APPLICATION",
+  tools: "TOOLS & AUTOMATION",
+};
+
+function ProjectLinks({ project }: { project: Project }) {
+  return (
+    <div className="project-links">
+      {project.liveUrl && (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Visit ${project.title}`}
+        >
+          Visit site <ArrowUpRight size={15} />
+        </a>
+      )}
+      {project.repoUrl && (
+        <a
+          href={project.repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${project.title} source on GitHub`}
+        >
+          <Github size={15} /> Source
+        </a>
+      )}
+    </div>
+  );
+}
 
 export function Projects() {
+  const [filter, setFilter] = useState<string>("all");
+  const [expanded, setExpanded] = useState(false);
+  const projects = siteConfig.projects.filter(
+    (p) => filter === "all" || p.category === filter,
+  );
+  const illustrated = projects.filter((p) => featured.includes(p.id));
+  const other = projects.filter((p) => !featured.includes(p.id));
+  const showOther = expanded || filter !== "all";
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section projects-section">
       <div className="container">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="section-heading-row">
           <SectionHeader
-            eyebrow="Projects"
-            title="Selected work."
-            description="A few things I’ve built recently. More on GitHub."
+            eyebrow="01 / SELECTED WORK"
+            title="Ideas, brought to life."
+            description="A selection of products, platforms, and useful things I’ve helped build."
           />
           <a
             href={siteConfig.socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-1.5 self-start text-sm font-medium text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"
+            className="text-link"
           >
-            View all on GitHub
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            More on GitHub <ArrowUpRight size={16} />
           </a>
         </div>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {siteConfig.projects.map((project, i) => (
-            <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{
-                duration: 0.5,
-                delay: i * 0.06,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className={cn(
-                "group relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-glow dark:border-neutral-800 dark:bg-neutral-900/40 dark:hover:border-brand-900/60",
-                project.highlight && "md:col-span-2",
-              )}
-            >
-              {/* Subtle hover sheen */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-brand-500/0 via-brand-500/0 to-brand-500/0 opacity-0 transition-opacity duration-500 group-hover:from-brand-500/5 group-hover:via-transparent group-hover:to-transparent group-hover:opacity-100"
-              />
-
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="font-display text-xl font-semibold tracking-tight text-neutral-900 dark:text-white">
-                  {project.title}
-                </h3>
-                <div className="flex items-center gap-1.5">
-                  {project.repoUrl ? (
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} source on GitHub`}
-                      className="grid h-9 w-9 place-items-center rounded-full border border-transparent text-neutral-500 transition-all hover:border-neutral-200 hover:text-neutral-900 dark:hover:border-neutral-800 dark:hover:text-white"
-                    >
-                      <Github className="h-4 w-4" />
-                    </a>
-                  ) : null}
-                  {project.liveUrl ? (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} live demo`}
-                      className="grid h-9 w-9 place-items-center rounded-full border border-transparent text-neutral-500 transition-all hover:border-neutral-200 hover:text-brand-600 dark:hover:border-neutral-800 dark:hover:text-brand-400"
-                    >
-                      <ArrowUpRight className="h-4 w-4" />
-                    </a>
-                  ) : null}
-                </div>
-              </div>
-
-              <p className="mt-3 text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
-                {project.description}
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                {project.stack.map((tech) => (
-                  <Badge key={tech} variant="brand">
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
-            </motion.article>
-          ))}
+        <div className="project-toolbar">
+          <div
+            className="project-filters"
+            role="group"
+            aria-label="Filter projects"
+          >
+            {filters.map((item) => (
+              <button
+                type="button"
+                key={item.value}
+                aria-pressed={filter === item.value}
+                onClick={() => setFilter(item.value)}
+              >
+                {item.label}
+                <span>
+                  {item.value === "all"
+                    ? siteConfig.projects.length
+                    : siteConfig.projects.filter(
+                        (p) => p.category === item.value,
+                      ).length}
+                </span>
+              </button>
+            ))}
+          </div>
+          <span className="mono project-count" aria-live="polite">
+            {String(projects.length).padStart(2, "0")} PROJECTS
+          </span>
         </div>
+        {illustrated.length > 0 && (
+          <div className="projects-grid">
+            {illustrated.map((project, i) => (
+              <article className="project-card" key={project.id}>
+                <ProjectArt id={project.id} />
+                <div className="project-card-meta mono">
+                  <span>{categoryNames[project.category]}</span>
+                  <span>0{i + 1}</span>
+                </div>
+                <div className="project-title-row">
+                  <h3>{project.title}</h3>
+                  <ProjectLinks project={project} />
+                </div>
+                <p className="project-description">{project.description}</p>
+                <div className="project-stack">
+                  {project.stack.map((tech) => (
+                    <span key={tech}>{tech}</span>
+                  ))}
+                </div>
+                {project.bullets && (
+                  <details className="project-details">
+                    <summary>
+                      Inside the build <Plus size={14} />
+                    </summary>
+                    <ul>
+                      {project.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
+              </article>
+            ))}
+          </div>
+        )}
+        {other.length > 0 && (
+          <>
+            <div
+              id="more-projects"
+              hidden={!showOther}
+              className="project-archive"
+            >
+              {other.map((project) => (
+                <article className="archive-row" key={project.id}>
+                  <div>
+                    <span className="section-kicker">
+                      {categoryNames[project.category]}
+                    </span>
+                    <h3>{project.title}</h3>
+                  </div>
+                  <div>
+                    <p>{project.description}</p>
+                    <div className="project-stack">
+                      {project.stack.map((tech) => (
+                        <span key={tech}>{tech}</span>
+                      ))}
+                    </div>
+                    <ProjectLinks project={project} />
+                  </div>
+                </article>
+              ))}
+            </div>
+            {filter === "all" && (
+              <button
+                type="button"
+                className="all-projects-button"
+                aria-expanded={expanded}
+                aria-controls="more-projects"
+                onClick={() => setExpanded(!expanded)}
+              >
+                {expanded
+                  ? "Show selected work"
+                  : `Explore ${other.length} more projects`}
+                <ArrowDown size={16} className={expanded ? "rotate-180" : ""} />
+              </button>
+            )}
+          </>
+        )}
       </div>
     </section>
   );

@@ -5,7 +5,11 @@ type BadgeProps = React.HTMLAttributes<HTMLSpanElement> & {
   variant?: "default" | "outline" | "brand";
 };
 
-export function Badge({ className, variant = "default", ...props }: BadgeProps) {
+export function Badge({
+  className,
+  variant = "default",
+  ...props
+}: BadgeProps) {
   const variants = {
     default:
       "bg-neutral-100 text-neutral-700 dark:bg-neutral-800/80 dark:text-neutral-300",

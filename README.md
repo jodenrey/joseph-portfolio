@@ -1,71 +1,49 @@
-# Joseph — Portfolio
+# Joseph Dennis Reyes — Portfolio
 
-A modern, minimalist personal portfolio for a software engineer.
-Built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.
-
-> Apple-level minimalism, sharp typography, soft motion, and a tasteful red/grey/white palette.
+A personal developer portfolio built with **Next.js 16**, **React 19**, **TypeScript**, and **Tailwind CSS**. The design pairs warm neutrals, orange accents, expressive typography, and a custom Three.js sculpture.
 
 ## Features
 
-- Hero with animated typing effect and gradient title
-- About, Skills, Projects, Experience (timeline), and Contact sections
-- Sticky responsive navbar with mobile menu
-- **Dark mode** via `next-themes` (system-aware)
-- Subtle scroll-in animations with `framer-motion`
-- Working contact form (mailto fallback — easy to swap for an API route)
-- SEO basics: metadata, Open Graph, Twitter card, `robots.txt`, `sitemap.xml`
-- Accessible: semantic landmarks, skip-link, keyboard-friendly focus rings
-- Zero runtime JS for static sections (server components where possible)
+- Responsive navigation, light/dark themes, and a prominent resume download.
+- Filterable projects with expandable build details and a secondary project archive.
+- Experience timeline covering Atlas Geotech, ONETool Solutions, Watsons Philippines, and Weberlly.
+- Interactive WebGL hero with pointer response, a pause control, and a static SVG fallback when WebGL is unavailable or data saving is enabled.
+- Reduced-motion support, static rendering on touch devices, capped pixel density, and animation paused while offscreen or in a hidden tab.
+- Semantic sections, keyboard focus styles, a skip link, accessible form status, and native expandable details.
+- SMTP contact form with validation, a honeypot, basic rate limiting, and direct email links as a fallback.
 
-## Tech stack
+**Project visuals are conceptual illustrations and interface studies, not screenshots of the actual applications.** Project descriptions and experience details live in the content configuration.
 
-| Area     | Choice                                   |
-| -------- | ---------------------------------------- |
-| Framework | Next.js 14 (App Router) + TypeScript    |
-| Styling  | Tailwind CSS, custom design tokens       |
-| Motion   | Framer Motion                            |
-| Icons    | lucide-react                             |
-| Themes   | next-themes                              |
-
-## Getting started
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open <http://localhost:3000>.
-
-### Build for production
+Open [localhost:3000](http://localhost:3000).
 
 ```bash
+npm run lint
 npm run build
 npm run start
 ```
 
-## Customizing
+`start` serves the production build after `build` succeeds.
 
-All your personal content lives in **one file**: [`src/config/site.ts`](src/config/site.ts).
-Edit your name, tagline, social links, skills, projects, and experience there.
+## Update content and resume
 
-To replace the initials avatar in the About section with a real photo,
-drop an image in `public/` and use `next/image` in
-`src/components/sections/about.tsx`.
+Edit [`src/config/site.ts`](src/config/site.ts) for identity, social links, navigation, skills, projects, and experience. Projects use stable IDs and the `product`, `enterprise`, or `tools` category; optional `bullets` provide expandable build details.
 
-### Brand color
+The downloadable one-page resume is [`public/joseph-dennis-reyes-resume.pdf`](public/joseph-dennis-reyes-resume.pdf), served at `/joseph-dennis-reyes-resume.pdf`. Download links use the filename **Joseph Dennis Reyes - Software Developer Resume.pdf**. Replace that public PDF to update the document while keeping links working.
 
-The brand red is defined as the `brand` color scale in
-[`tailwind.config.ts`](tailwind.config.ts). Change the palette there
-to re-skin the entire site.
+The portrait is in `public/images/profile.png`. Page styles are in `src/app/globals.css`, the hero sculpture is in `src/components/three/`, and project illustrations are in `src/components/projects/project-art.tsx`.
 
-### Wiring up the contact form
+## Contact email
 
-The contact form posts to `POST /api/contact` (Next.js Route Handler at
-`src/app/api/contact/route.ts`) and sends email via SMTP using `nodemailer`.
+The form submits to `POST /api/contact`, which sends email through `nodemailer`. No `.env` file or SMTP credentials are supplied. Create an untracked `.env.local` with your own settings:
 
-Create a `.env.local` with:
-
-```bash
+```dotenv
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your_email@gmail.com
@@ -74,24 +52,14 @@ CONTACT_TO=josephdennisreyes@gmail.com
 CONTACT_FROM="Portfolio Contact <your_email@gmail.com>"
 ```
 
-Notes:
+For Gmail, use an App Password. Without SMTP configuration, the form reports that delivery is unavailable and offers a `mailto:` link to email Joseph directly. The rate limit is in memory and applies per server instance.
 
-- **Gmail**: use an **App Password**, not your normal password.
-- The route includes a small in-memory rate limit + honeypot spam trap.
+## Site URL and metadata
 
-## Project structure
+Optionally set `NEXT_PUBLIC_SITE_URL` to your deployed site's full HTTP(S) URL in `.env.local` or your hosting environment, then rebuild. The URL is normalized to its origin and enables the canonical URL, Open Graph URL, sitemap entry, and sitemap reference in `robots.txt`.
 
-```
-src/
-  app/                # App Router entrypoints, metadata, sitemap, robots
-  components/
-    sections/         # Hero, About, Skills, Projects, Experience, Contact
-    ui/               # Reusable primitives (Button, Badge, SectionHeader)
-    providers/        # ThemeProvider
-  config/site.ts      # Single source of truth for site content
-  lib/utils.ts        # cn() helper
-```
+There is no default public domain. With the setting absent or invalid, absolute site URLs are omitted and the sitemap is empty.
 
 ## License
 
-MIT — make it yours.
+MIT.

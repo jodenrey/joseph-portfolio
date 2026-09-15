@@ -4,8 +4,11 @@ export type NavItem = {
 };
 
 export type Project = {
+  id: string;
+  category: "product" | "enterprise" | "tools";
   title: string;
   description: string;
+  bullets?: string[];
   stack: string[];
   liveUrl?: string;
   repoUrl?: string;
@@ -31,10 +34,10 @@ export const siteConfig = {
   fullName: "Joseph Dennis Reyes",
   role: "Software Developer",
   tagline:
-    "Full‑stack software developer focused on modern web apps, clean APIs, and data-driven systems.",
+    "I build thoughtful web and mobile experiences, backed by reliable systems.",
   about: [
-    "I’m a full‑stack software developer who builds responsive, production-ready web apps with a strong focus on performance, usability, and maintainable code.",
-    "I work across modern tech stacks—shipping dashboards, secure REST APIs, and data pipelines that turn messy integrations into reliable systems.",
+    "I’m Joseph, a software developer based in the Philippines. I work across the full stack, from the first screen someone touches to the APIs and data that keep it running.",
+    "My work spans property reporting, mobile apps, HR analytics, and AI-powered products. I enjoy making complex workflows feel simple, with a close eye on usability, thoughtful details, and the people using what I build.",
   ],
   email: "josephdennisreyes@gmail.com",
   location: "Philippines · GMT+8",
@@ -59,62 +62,180 @@ export const siteConfig = {
   ] as NavItem[],
   skillGroups: [
     {
-      category: "Frontend",
-      items: ["HTML", "CSS", "Tailwind", "JavaScript", "TypeScript", "React.js", "Next.js"],
+      category: "Frontend and Mobile",
+      items: [
+        "HTML",
+        "CSS",
+        "Tailwind CSS",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "React Native",
+        "Expo",
+      ],
     },
     {
-      category: "Backend",
-      items: ["C#", ".NET Core", "REST APIs", "Node.js", "PHP", "Python"],
+      category: "Backend and Databases",
+      items: [
+        "C#",
+        ".NET Core",
+        "REST APIs",
+        "Node.js",
+        "PHP",
+        "Python",
+        "SQL Server",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Firebase",
+      ],
     },
     {
-      category: "Databases",
-      items: ["SQL Server", "PostgreSQL", "MySQL", "MongoDB", "Firebase"],
-    },
-    {
-      category: "Cloud & DevOps",
-      items: ["Docker", "AWS"],
-    },
-    {
-      category: "Tooling",
-      items: ["Git", "GitHub", "GitLab", "Vercel", "Postman", "Swagger", "Figma"],
-    },
-    {
-      category: "AI & IDE",
-      items: ["Cursor", "Claude", "GitHub Copilot"],
+      category: "Cloud and Tools",
+      items: [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Vercel",
+        "CI/CD",
+        "Linux",
+        "Git",
+        "GitHub",
+        "GitLab",
+        "Postman",
+        "Swagger",
+        "Figma",
+        "Claude Code",
+        "Cursor",
+      ],
     },
   ] as SkillGroup[],
   projects: [
     {
+      id: "atlas-nhd",
+      category: "enterprise",
+      title: "AtlasNHD",
+      description:
+        "A production property and natural-hazard reporting platform, connecting property search, report ordering, geospatial analysis, and secure PDF delivery.",
+      bullets: [
+        "Built property-search and ordering workflows with address autocomplete, APN lookup, reverse geocoding, asynchronous report generation, status polling, cloud storage, secure PDF delivery, and report history.",
+        "Implemented Property Exception Reports using geospatial parcel-buffer analysis with a 2.5-meter boundary across multiple hazard types, routing flagged reports through quality control (QC) before customer delivery.",
+      ],
+      stack: ["Next.js", "React", "TypeScript", "REST APIs", "AWS"],
+      highlight: true,
+    },
+    {
+      id: "vassist-ai",
+      category: "product",
+      title: "VAssist AI",
+      description:
+        "An 18-module SaaS platform bringing AI chat, CRM, invoicing, and subscription billing into one workspace, with secure isolation of each customer’s data.",
+      bullets: [
+        "Built an 18-module SaaS platform using Next.js, React, TypeScript, Supabase, and the Anthropic API, with AI chat, CRM, invoicing, and row-level security for multi-tenant data isolation.",
+        "Integrated Stripe subscription billing, customer management, and the Customer Portal, with Zustand for shared state; supported real users and payments through testing, documentation, and UX improvements.",
+      ],
+      stack: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Supabase",
+        "Anthropic API",
+        "Stripe",
+        "Zustand",
+      ],
+      highlight: true,
+    },
+    {
+      id: "atlas-portal",
+      category: "enterprise",
+      title: "Atlas Portal",
+      description:
+        "An iOS and Android app for finding properties, viewing maps, ordering and tracking reports, and opening PDFs on the go.",
+      bullets: [
+        "Developed the Atlas Portal iOS and Android app with React Native, Expo, TypeScript, TanStack Query, and Zustand, supporting secure authentication, property search, maps, report ordering, tracking, and PDF viewing.",
+        "Integrated Atlas SDI and Portal Admin APIs with JWT authentication and session restoration.",
+      ],
+      stack: [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "TanStack Query",
+        "Zustand",
+      ],
+      highlight: true,
+    },
+    {
+      id: "design-genius",
+      category: "product",
       title: "DesignGenius",
       description:
-        "AI-powered interior design platform with Stripe payments and fast AI render turnaround (8–12s average).",
-      stack: ["Next.js", "Tailwind CSS", "TypeScript", "PostgreSQL", "Stripe", "Replicate"],
+        "An AI-powered interior design platform with image generation and Stripe payments.",
+      stack: [
+        "Next.js",
+        "Tailwind CSS",
+        "TypeScript",
+        "PostgreSQL",
+        "Stripe",
+        "Replicate",
+      ],
       liveUrl: "https://design-genius.vercel.app/",
       repoUrl: "https://github.com/jodenrey/DesignGenius",
       highlight: true,
     },
     {
+      id: "vineyard-attendance",
+      category: "tools",
       title: "Vineyard Academy Attendance System",
       description:
         "Full-stack attendance system with facial recognition + QR authentication, role-based dashboards, and real-time tracking.",
-      stack: ["Python", "FastAPI", "Next.js", "TypeScript", "PostgreSQL", "InsightFace", "OpenCV"],
-      repoUrl: "https://github.com/jodenrey/vineyard-facialrecog-qrcode-attendance-system",
+      stack: [
+        "Python",
+        "FastAPI",
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "InsightFace",
+        "OpenCV",
+      ],
+      repoUrl:
+        "https://github.com/jodenrey/vineyard-facialrecog-qrcode-attendance-system",
     },
     {
+      id: "hro-dashboard",
+      category: "enterprise",
       title: "HRO Dashboard",
       description:
         "Internal HR analytics dashboard supporting 13,000+ employee records with real-time reporting, secure RBAC, and automated data validation workflows.",
-      stack: ["Next.js", "TypeScript", "Tailwind CSS", "C#", ".NET", "SQL Server"],
+      stack: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "C#",
+        ".NET",
+        "SQL Server",
+      ],
       // Source code is private (company project).
       highlight: true,
     },
     {
+      id: "web-scraping",
+      category: "tools",
       title: "Web Scraping Platform",
       description:
         "Automated extraction and processing of 10,000+ records with a dashboard for dataset visualization and API integration.",
-      stack: ["Python", "Requests", "BeautifulSoup", "Pandas", "Next.js", "TypeScript"],
+      stack: [
+        "Python",
+        "Requests",
+        "BeautifulSoup",
+        "Pandas",
+        "Next.js",
+        "TypeScript",
+      ],
     },
     {
+      id: "edoc",
+      category: "product",
       title: "eDoc E-Channeling System",
       description:
         "Web-based platform for doctor appointments with admin, doctor, and patient portals—scheduling, booking, and PDF receipts/reports.",
@@ -122,36 +243,38 @@ export const siteConfig = {
       repoUrl: "https://github.com/jodenrey/edoc",
     },
     {
+      id: "hireit",
+      category: "product",
       title: "Hireit",
       description:
         "College freelancing platform where lecturers post projects and students apply (solo or teams)—messaging, leaderboards, and project workflows.",
       stack: ["Laravel", "Vue.js", "Sass", "MySQL"],
       repoUrl: "https://github.com/jodenrey/Hireit",
     },
-    {
-      title: "Freelance Client Builds",
-      description:
-        "Delivered 5+ full-stack websites, dashboards, and API integrations with performance and SEO improvements.",
-      stack: ["React", "Next.js", "Node.js", "PHP/WordPress", "REST APIs"],
-    },
   ] as Project[],
   experience: [
     {
-      role: "Freelance Software Engineer",
-      company: "Self-employed",
-      period: "Jan 2024 — Present",
+      role: "Full-Stack Developer",
+      company: "Atlas Geotech LLC",
+      period: "June 2026 — Present",
+      location: "Los Angeles, California, United States",
       bullets: [
-        "Architected and delivered full-stack web applications and internal platforms using Next.js, TypeScript, Node.js, Python, PHP, C#, .NET, SQL Server, and PostgreSQL.",
-        "Designed scalable backend systems, REST APIs, and automation pipelines supporting AI-powered workflows and third-party integrations.",
-        "Led end-to-end product development from system architecture and database design to deployment, monitoring, and production support.",
-        "Built AI-driven applications integrating Claude, image generation APIs, payment systems, and social media publishing platforms.",
-        "Engineered event-driven automation systems with scheduled jobs, asynchronous processing, retries, logging, and fault-tolerant workflows.",
-        "Developed and optimized relational database schemas, queries, and data pipelines using PostgreSQL, Prisma, and SQL technologies.",
-        "Implemented secure authentication, role-based access control, API validation, and scalable application patterns for production environments.",
-        "Managed cloud deployments, environment configuration, CI/CD workflows, and application maintenance across frontend and backend services.",
-        "Collaborated directly with clients and stakeholders to translate business requirements into scalable technical solutions and production-ready features.",
-        "Leveraged AI-assisted development tools including Cursor and Claude Code to accelerate delivery, improve architecture planning, and streamline development workflows.",
-        "Built and maintained systems involving AI automation, content generation pipelines, analytics dashboards, and API orchestration across multiple services.",
+        "Developed and maintained AtlasNHD, a production property and natural-hazard reporting platform using Next.js, React, TypeScript, REST APIs, and AWS across customer portals, internal workflows, and backend integrations.",
+        "Built property-search and ordering workflows with address autocomplete, APN lookup, reverse geocoding, asynchronous report generation, status polling, cloud storage, secure PDF delivery, and report history.",
+        "Implemented Property Exception Reports using geospatial parcel-buffer analysis with a 2.5-meter boundary across multiple hazard types, routing flagged reports through quality control (QC) before customer delivery.",
+        "Developed the Atlas Portal iOS and Android app with React Native, Expo, TypeScript, TanStack Query, and Zustand, supporting secure authentication, property search, maps, report ordering, tracking, and PDF viewing.",
+        "Integrated Atlas SDI and Portal Admin APIs with JWT authentication and session restoration; supported AWS deployments, CloudFront cache management, environment migrations, API routing, and production troubleshooting.",
+      ],
+    },
+    {
+      role: "Software Engineer",
+      company: "ONETool Solutions, Inc.",
+      period: "Mar 2026 — Sep 2026",
+      location: "Makati, NCR, Philippines",
+      bullets: [
+        "Developed backend API integration services for a central-banking client, owning requirements analysis, testing, and production deployment; authored test data and system integration testing (SIT) documentation.",
+        "Automated hourly data retrieval and downstream API calls with retries and exception handling; implemented secure REST integrations with configurable mTLS/SSL, timeouts, and endpoints.",
+        "Deployed Docker-based Node.js services and provisioned Kubernetes clusters, configuring canary routing, mutual TLS (mTLS), and fault injection through declarative service-mesh policies.",
       ],
     },
     {
@@ -159,12 +282,11 @@ export const siteConfig = {
       company: "Watsons Philippines",
       companyUrl: "https://www.watsons.com.ph/",
       period: "Aug 2025 — Mar 2026",
-      location: "Philippines",
+      location: "Pasay, NCR, Philippines",
       bullets: [
-        "Developed and maintained the HRO Dashboard supporting 13,000+ employee records using Next.js, TypeScript, Tailwind CSS, C# .NET, and SQL Server—delivering real-time HR analytics and reporting.",
-        "Built 15+ secure RESTful APIs and engineered ETL pipelines integrating Hatch/Cornerstone, Oracle HCM, and Know App, processing 13K+ records with automated validation and CSV generation.",
-        "Designed SQL Server stored procedures and scheduled jobs reducing manual data processing by ~50%, and implemented secure authentication + RBAC to strengthen privacy controls.",
-        "Created technical documentation, supported SIT/UAT for integrations, and collaborated with HR stakeholders and BAs to resolve issues and deliver enhancements.",
+        "Developed the HRO Dashboard for 13,000+ employee records using Next.js, TypeScript, Tailwind CSS, C# .NET, and SQL Server, delivering real-time HR analytics and reporting.",
+        "Built 15+ secure RESTful APIs and ETL pipelines integrating Hatch/Cornerstone, Oracle HCM, and Know App, processing 13,000+ records with automated validation and CSV generation.",
+        "Reduced manual processing by approximately 50% with SQL Server stored procedures and scheduled jobs; implemented authentication and RBAC and supported SIT/UAT, documentation, and production enhancements.",
       ],
     },
     {
@@ -172,10 +294,10 @@ export const siteConfig = {
       company: "Weberlly",
       companyUrl: "https://weberlly.com/",
       period: "Feb 2025 — May 2025",
+      location: "San Jose del Monte, Bulacan, Philippines",
       bullets: [
-        "Built a full-stack web scraping platform that automated extraction of 10,000+ records, eliminating manual data collection and integrating with REST APIs.",
-        "Developed Python automation scripts using Requests, BeautifulSoup, and Pandas.",
-        "Built a real-time dataset visualization dashboard using Next.js and TypeScript, and deployed a responsive SEO-optimized client website.",
+        "Built a web scraping platform automating extraction of 10,000+ records with Python, Requests, BeautifulSoup, Pandas, and REST API integrations, eliminating manual data collection.",
+        "Developed a real-time dataset dashboard using Next.js and TypeScript and deployed a responsive, SEO-optimized client website.",
       ],
     },
   ] as ExperienceItem[],
