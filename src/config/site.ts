@@ -290,6 +290,16 @@ export const siteConfig = {
       ],
     },
     {
+      role: "Freelance Software Engineer",
+      company: "US Client",
+      period: "Jan 2024 — Jul 2025",
+      location: "United States (Client)",
+      bullets: [
+        "Delivered full-stack web applications using Next.js, TypeScript, Node.js, Python, and SQL databases, owning architecture through deployment and production support; integrated AI APIs and payment systems.",
+        "Built automation pipelines with scheduled jobs, asynchronous processing, retries, and logging; implemented secure authentication, role-based access control, and API validation.",
+      ],
+    },
+    {
       role: "Full-Stack Developer Intern",
       company: "Weberlly",
       companyUrl: "https://weberlly.com/",
