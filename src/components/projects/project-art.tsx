@@ -47,7 +47,7 @@ export function ProjectArt({ id }: { id: string }) {
   if (id === "vassist-ai" || id === "design-genius") {
     const title = id === "vassist-ai" ? "VAssist AI" : "DesignGenius";
     return (
-      <div className="project-art art-screenshot">
+      <div className={`project-art art-screenshot art-screenshot-${id}`}>
         <div className="project-screenshot-window">
           <Image
             src={`/images/${id}-homepage.jpg`}

@@ -497,8 +497,12 @@ button:disabled {
   display: grid;
   place-items: center;
   padding: 22px;
-  background: var(--card);
-  border: 1px solid var(--line);
+}
+.art-screenshot-vassist-ai {
+  background: #e7cec8;
+}
+.art-screenshot-design-genius {
+  background: #e4d6bc;
 }
 .project-screenshot-window {
   position: relative;
