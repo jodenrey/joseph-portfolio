@@ -35,7 +35,7 @@ npm run start
 
 Edit [`src/config/site.ts`](src/config/site.ts) for identity, social links, navigation, skills, projects, and experience. Projects use stable IDs and the `product`, `enterprise`, or `tools` category; optional `bullets` provide expandable build details.
 
-The downloadable one-page resume is [`public/joseph-dennis-reyes-resume.pdf`](public/joseph-dennis-reyes-resume.pdf), served at `/joseph-dennis-reyes-resume.pdf`. Download links use the filename **Joseph Dennis Reyes - Software Engineer Resume.pdf**. Replace that public PDF to update the document while keeping links working.
+The downloadable one-page resume is [`public/joseph-dennis-reyes-resume.pdf`](public/joseph-dennis-reyes-resume.pdf), served at `/joseph-dennis-reyes-resume.pdf`. Download links use the filename **Joseph Dennis Reyes - Full Stack Engineer Resume.pdf**. Replace that public PDF to update the document while keeping links working.
 
 The portrait is in `public/images/profile.png`. Page styles are in `src/app/globals.css`, the hero sculpture is in `src/components/three/`, and project illustrations are in `src/components/projects/project-art.tsx`.
 

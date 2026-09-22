@@ -482,7 +482,8 @@ button:disabled {
   min-width: 0;
 }
 .project-art {
-  height: 300px;
+  --project-art-height: 300px;
+  height: var(--project-art-height);
   border-radius: 5px;
   position: relative;
   overflow: hidden;
@@ -492,13 +493,32 @@ button:disabled {
 .project-card:hover .project-art {
   box-shadow: 0 10px 24px -15px #35322260;
 }
-.project-art.art-screenshot {
-  height: auto;
-  aspect-ratio: 16 / 9;
+.art-screenshot {
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: var(--card);
   border: 1px solid var(--line);
+}
+.project-screenshot-window {
+  position: relative;
+  width: min(100%, calc((var(--project-art-height) - 56px) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 8px 14px 24px #00000020;
+  transform: rotate(-3deg);
+  transition: transform 0.4s, box-shadow 0.4s;
 }
 .project-screenshot {
   object-fit: contain;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover .project-screenshot-window,
+  .project-card:focus-within .project-screenshot-window {
+    transform: rotate(-1deg) translateY(-4px);
+    box-shadow: 10px 20px 30px #00000028;
+  }
 }
 .project-card-meta {
   display: flex;
@@ -509,6 +529,7 @@ button:disabled {
 }
 .project-title-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
@@ -1440,7 +1461,7 @@ summary::-webkit-details-marker {
     gap: 60px;
   }
   .project-art {
-    height: 270px;
+    --project-art-height: 270px;
   }
   .atlas-window {
     margin-top: 25px;
@@ -1551,7 +1572,7 @@ summary::-webkit-details-marker {
     max-width: 350px;
   }
   .project-art {
-    height: 238px;
+    --project-art-height: 238px;
   }
   .projects-grid {
     gap: 39px 22px;
@@ -1897,7 +1918,7 @@ summary::-webkit-details-marker {
     gap: 38px;
   }
   .project-art {
-    height: 275px;
+    --project-art-height: 275px;
   }
   .project-card-meta {
     margin-top: 19px;

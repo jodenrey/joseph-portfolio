@@ -43,7 +43,7 @@ export const siteConfig = {
   location: "Philippines · GMT+8",
   /** Served from `public/` — keep URL path-only for same-origin download */
   resumeUrl: "/joseph-dennis-reyes-resume.pdf",
-  resumeDownloadFileName: "Joseph Dennis Reyes - Software Engineer Resume.pdf",
+  resumeDownloadFileName: "Joseph Dennis Reyes - Full Stack Engineer Resume.pdf",
   socials: {
     github: "https://github.com/jodenrey",
     linkedin: "https://linkedin.com/in/jodenrey",

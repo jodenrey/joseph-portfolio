@@ -48,13 +48,15 @@ export function ProjectArt({ id }: { id: string }) {
     const title = id === "vassist-ai" ? "VAssist AI" : "DesignGenius";
     return (
       <div className="project-art art-screenshot">
-        <Image
-          src={`/images/${id}-homepage.jpg`}
-          alt={`${title} live homepage`}
-          fill
-          sizes="(max-width: 700px) 90vw, (max-width: 1200px) 45vw, 530px"
-          className="project-screenshot"
-        />
+        <div className="project-screenshot-window">
+          <Image
+            src={`/images/${id}-homepage.jpg`}
+            alt={`${title} live homepage`}
+            fill
+            sizes="(max-width: 600px) 85vw, (max-width: 1200px) 40vw, 530px"
+            className="project-screenshot"
+          />
+        </div>
       </div>
     );
   }
