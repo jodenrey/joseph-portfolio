@@ -1,4 +1,5 @@
 import Image from "next/image";
+import profileImage from "../../../public/images/profile.png";
 import { ArrowUpRight, Coffee, MapPin } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
@@ -9,7 +10,7 @@ export function About() {
         <div className="portrait-block">
           <div className="portrait-frame">
             <Image
-              src="/images/profile.png"
+              src={profileImage}
               alt="Joseph Dennis Reyes"
               fill
               sizes="(max-width: 700px) 85vw, 380px"

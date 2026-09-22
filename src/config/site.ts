@@ -32,18 +32,18 @@ export type SkillGroup = {
 export const siteConfig = {
   name: "Joseph",
   fullName: "Joseph Dennis Reyes",
-  role: "Software Developer",
+  role: "Software Engineer",
   tagline:
     "I build thoughtful web and mobile experiences, backed by reliable systems.",
   about: [
-    "I’m Joseph, a software developer based in the Philippines. I work across the full stack, from the first screen someone touches to the APIs and data that keep it running.",
+    "I’m Joseph, a software engineer based in the Philippines. I work across the full stack, from the first screen someone touches to the APIs and data that keep it running.",
     "My work spans property reporting, mobile apps, HR analytics, and AI-powered products. I enjoy making complex workflows feel simple, with a close eye on usability, thoughtful details, and the people using what I build.",
   ],
   email: "josephdennisreyes@gmail.com",
   location: "Philippines · GMT+8",
   /** Served from `public/` — keep URL path-only for same-origin download */
   resumeUrl: "/joseph-dennis-reyes-resume.pdf",
-  resumeDownloadFileName: "Joseph Dennis Reyes - Software Developer Resume.pdf",
+  resumeDownloadFileName: "Joseph Dennis Reyes - Software Engineer Resume.pdf",
   socials: {
     github: "https://github.com/jodenrey",
     linkedin: "https://linkedin.com/in/jodenrey",
@@ -144,6 +144,7 @@ export const siteConfig = {
         "Stripe",
         "Zustand",
       ],
+      liveUrl: "https://vassist-ai.vercel.app/",
       highlight: true,
     },
     {
@@ -278,7 +279,7 @@ export const siteConfig = {
       ],
     },
     {
-      role: "Software Developer",
+      role: "Software Engineer",
       company: "Watsons Philippines",
       companyUrl: "https://www.watsons.com.ph/",
       period: "Aug 2025 — Mar 2026",

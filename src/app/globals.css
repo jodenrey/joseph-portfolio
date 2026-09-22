@@ -492,6 +492,14 @@ button:disabled {
 .project-card:hover .project-art {
   box-shadow: 0 10px 24px -15px #35322260;
 }
+.project-art.art-screenshot {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+}
+.project-screenshot {
+  object-fit: contain;
+}
 .project-card-meta {
   display: flex;
   justify-content: space-between;
@@ -1127,12 +1135,7 @@ summary::-webkit-details-marker {
 }
 .portrait {
   object-fit: cover;
-  object-position: center 15%;
-  filter: grayscale(100%);
-  transition: filter 0.4s;
-}
-.portrait-block:hover .portrait {
-  filter: grayscale(0);
+  object-position: center 65%;
 }
 .portrait-label {
   position: absolute;

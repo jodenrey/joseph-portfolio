@@ -12,7 +12,7 @@ A personal developer portfolio built with **Next.js 16**, **React 19**, **TypeSc
 - Semantic sections, keyboard focus styles, a skip link, accessible form status, and native expandable details.
 - SMTP contact form with validation, a honeypot, basic rate limiting, and direct email links as a fallback.
 
-**Project visuals are conceptual illustrations and interface studies, not screenshots of the actual applications.** Project descriptions and experience details live in the content configuration.
+VAssist AI and DesignGenius use screenshots of their live homepages. Atlas project visuals are conceptual interface studies. Project descriptions and experience details live in the content configuration.
 
 ## Run locally
 
@@ -35,7 +35,7 @@ npm run start
 
 Edit [`src/config/site.ts`](src/config/site.ts) for identity, social links, navigation, skills, projects, and experience. Projects use stable IDs and the `product`, `enterprise`, or `tools` category; optional `bullets` provide expandable build details.
 
-The downloadable one-page resume is [`public/joseph-dennis-reyes-resume.pdf`](public/joseph-dennis-reyes-resume.pdf), served at `/joseph-dennis-reyes-resume.pdf`. Download links use the filename **Joseph Dennis Reyes - Software Developer Resume.pdf**. Replace that public PDF to update the document while keeping links working.
+The downloadable one-page resume is [`public/joseph-dennis-reyes-resume.pdf`](public/joseph-dennis-reyes-resume.pdf), served at `/joseph-dennis-reyes-resume.pdf`. Download links use the filename **Joseph Dennis Reyes - Software Engineer Resume.pdf**. Replace that public PDF to update the document while keeping links working.
 
 The portrait is in `public/images/profile.png`. Page styles are in `src/app/globals.css`, the hero sculpture is in `src/components/three/`, and project illustrations are in `src/components/projects/project-art.tsx`.
 

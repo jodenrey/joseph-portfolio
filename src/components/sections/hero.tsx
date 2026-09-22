@@ -15,7 +15,7 @@ export function Hero() {
         <div className="hero-topline mono">
           <span>
             <span className="status-dot" />
-            FULL-STACK DEVELOPER
+            SOFTWARE ENGINEER
           </span>
           <span>BASED IN THE PHILIPPINES · GMT+8</span>
         </div>
