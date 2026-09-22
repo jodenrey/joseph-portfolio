@@ -500,13 +500,26 @@ button:disabled {
 }
 .art-screenshot-vassist-ai {
   background: #e7cec8;
+  color: #614942;
 }
 .art-screenshot-design-genius {
   background: #e4d6bc;
+  color: #64543b;
+}
+.screenshot-label {
+  position: absolute;
+  top: 22px;
+  left: 26px;
+  right: 26px;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 7px;
 }
 .project-screenshot-window {
   position: relative;
-  width: min(100%, calc((var(--project-art-height) - 56px) * 16 / 9));
+  width: min(100%, calc((var(--project-art-height) - 92px) * 16 / 9));
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 5px;

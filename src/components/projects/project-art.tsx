@@ -48,6 +48,12 @@ export function ProjectArt({ id }: { id: string }) {
     const title = id === "vassist-ai" ? "VAssist AI" : "DesignGenius";
     return (
       <div className={`project-art art-screenshot art-screenshot-${id}`}>
+        <div className="screenshot-label mono" aria-hidden="true">
+          <span>{id === "vassist-ai" ? "VASSIST / AI" : "DESIGNGENIUS"}</span>
+          <span>
+            {id === "vassist-ai" ? "AI WORKSPACE" : "ROOMS REIMAGINED"} ↗
+          </span>
+        </div>
         <div className="project-screenshot-window">
           <Image
             src={`/images/${id}-homepage.jpg`}
@@ -57,6 +63,9 @@ export function ProjectArt({ id }: { id: string }) {
             className="project-screenshot"
           />
         </div>
+        <span className="art-note mono" aria-hidden="true">
+          LIVE SITE PREVIEW
+        </span>
       </div>
     );
   }
