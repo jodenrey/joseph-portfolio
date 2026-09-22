@@ -279,7 +279,7 @@ export const siteConfig = {
       ],
     },
     {
-      role: "Software Engineer",
+      role: "Software Developer",
       company: "Watsons Philippines",
       companyUrl: "https://www.watsons.com.ph/",
       period: "Aug 2025 — Mar 2026",
